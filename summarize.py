@@ -6,8 +6,8 @@ import json
 
 
 # 네이버 클라우드 플랫폼에서 발급받은 클라이언트 아이디와 시크릿
-client_id = "ezp6anpue8"
-client_secret = "b3ax7kQmIP3l165zVSmFluVwvDOA9gsn3MWdxg2L"
+client_id = "CLIENT-ID"
+client_secret = "CLIENT-SECRET"
 
 # API 엔드포인트 URL
 url = "https://naveropenapi.apigw.ntruss.com/text-summary/v1/summarize"
