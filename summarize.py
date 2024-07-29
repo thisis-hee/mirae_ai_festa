@@ -6,8 +6,8 @@ import json
 
 
 # 네이버 클라우드 플랫폼에서 발급받은 클라이언트 아이디와 시크릿
-client_id = "CLIENT_ID"
-client_secret = "CLIENT_SECRET"
+client_id = "ezp6anpue8"
+client_secret = "b3ax7kQmIP3l165zVSmFluVwvDOA9gsn3MWdxg2L"
 
 # API 엔드포인트 URL
 url = "https://naveropenapi.apigw.ntruss.com/text-summary/v1/summarize"
@@ -20,13 +20,12 @@ headers = {
 }
 
 # Content만 빼서 json형태로 바꾸는 함수 지정
-def to_json(csv_path):
+def to_json_and_summary_comments(csv_path):
     data_contents=pd.read_csv(csv_path)
-    data_contents=data_contents['Content']
-    data_contents.to_json('Contents.json', orient = 'index', indent = 4)
+    data_contents=data_contents['본문']
+    data_contents.to_json('comments.json', orient = 'index', indent = 4)
 
-
-def summarize(json_path):
+    json_path='comments.json'
     with open(json_path, 'r') as f:
         json_data = json.load(f)
 
@@ -54,16 +53,14 @@ def summarize(json_path):
         if response.status_code == 200:
             summary_result = response.json()
             summarized_text = summary_result.get("summary", "")  # 요약 결과에서 실제 요약 텍스트 추출 (필요에 따라 수정)
-            summarized_data.append({"Text": summarized_text, "Completion": ''})
+            summarized_data.append({"Text": summarized_text})
         else:
             print("요청 실패: 상태 코드", response.status_code)
             print("응답 내용:", response.text)
-            summarized_data.append({"Text": "요약 실패", "Completion": ""})
 
     df_summarized = pd.DataFrame(summarized_data)
-    with open('summarizedContents.json', 'w', encoding='utf-8') as f:
+    with open('comments_summary.json', 'w', encoding='utf-8') as f:
         json.dump(df_summarized.to_dict(orient='records'), f, ensure_ascii=False, indent=4)
 
 
-to_json("data_comments.csv")
-summarize("Contents.json")
+to_json_and_summary_comments('news_summary/comments_many_news_content.csv')

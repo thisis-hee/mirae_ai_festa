@@ -19,7 +19,7 @@ data = {
 
 df = pd.DataFrame(data)
 
-X = df[['daily_trades', 'total_profit_rate', 'total_trade_amount', 'investment_experience']]
+X = df[['daily_trades', 'total_profit_rate', 'total_trade_amount','investment_experience']]
 
 # 스케일링
 scaler = StandardScaler()
@@ -67,9 +67,9 @@ plt.title('Elbow Method for Optimal number of clusters')
 plt.show()
 
 # 최적의 클러스터 수 선택
-optimal_clusters = 3
+#optimal_clusters = 3
 
-kmeans = KMeans(n_clusters=optimal_clusters, random_state=0)
+kmeans = KMeans(n_clusters=n_components, random_state=0)
 clusters = kmeans.fit_predict(X_scaled)
 df['cluster'] = clusters
 
@@ -83,6 +83,7 @@ loading_df = pd.DataFrame(loadings, index=X.columns, columns=['PC1', 'PC2', 'PC3
 # 결과 출력
 print("PCA Loadings:")
 print(loading_df)
+
 
 # 3D PCA 결과와 클러스터링 결과를 함께 시각화
 fig = plt.figure(figsize=(10, 8))
