@@ -34,4 +34,4 @@
 ### 기대효과
 ---
 <img width="1005" alt="image" src="https://github.com/user-attachments/assets/5d9c5822-f4bb-43a1-a9e4-dcc79949ee55" />
-선순환 구조를 통한 미래에셋 브랜드 가치 상승 및 증권업계 선두 자리 유지
+- 선순환 구조를 통한 미래에셋 브랜드 가치 상승 및 증권업계 선두 자리 유지
